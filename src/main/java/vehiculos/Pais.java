@@ -12,4 +12,8 @@ public class Pais {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public static Pais paisMasVendedor(){
+		return Vehiculo.paisMasVendedor1();
+	}
 }

@@ -48,7 +48,7 @@ public class Vehiculo {
 		}
 	}
 	
-	public static Fabricante fabricaMayorVentas() {
+	public static Fabricante fabricaMayorVentas1() {
 		int mayor=listaCantidad1.get(0);
 		Fabricante fabri=listaFabricas.get(0);
 		for (int j=1;j<listaCantidad1.size();j++) {
@@ -60,7 +60,7 @@ public class Vehiculo {
 		return fabri;
 	}
 	
-	public static Pais paisMasVendedor() {
+	public static Pais paisMasVendedor1() {
 		int mayor=listaCantidad2.get(0);
 		Pais pais=listaPaises.get(0);
 		for (int k=1;k<listaCantidad2.size();k++) {
