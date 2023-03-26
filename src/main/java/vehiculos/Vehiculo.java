@@ -12,9 +12,9 @@ public class Vehiculo {
 	private Fabricante fabricante;
 	private static int CantidadVehiculos=0;
 	
-	public static ArrayList<String> listaFabricas=new ArrayList<String>();
+	public static ArrayList<Fabricante> listaFabricas=new ArrayList<Fabricante>();
 	public static ArrayList<Integer> listaCantidad1=new ArrayList<Integer>();
-	public static ArrayList<String> listaPaises=new ArrayList<String>();
+	public static ArrayList<Pais> listaPaises=new ArrayList<Pais>();
 	public static ArrayList<Integer> listaCantidad2=new ArrayList<Integer>();
 	
 	public Vehiculo(String placa,int puertas,int velocidadMaxima, String nombre,int precio, int peso, String traccion, Fabricante fabricante) {
@@ -29,41 +29,41 @@ public class Vehiculo {
 		CantidadVehiculos = getCantidadVehiculos() + 1;
 		
 		
-		boolean existe=listaFabricas.contains(this.fabricante.getNombre());
+		boolean existe=listaFabricas.contains(this.fabricante);
 		if (existe) {
-			int n=listaFabricas.indexOf(this.fabricante.getNombre());
+			int n=listaFabricas.indexOf(this.fabricante);
 			listaCantidad1.set(n, listaCantidad1.get(n)+1);
 		}else {
-			listaFabricas.add(this.fabricante.getNombre());
+			listaFabricas.add(this.fabricante);
 			listaCantidad1.add(1);
 		}
 		
-		boolean nacionalidad=listaPaises.contains(this.fabricante.getPais().getNombre());
+		boolean nacionalidad=listaPaises.contains(this.fabricante.getPais());
 		if (nacionalidad) {
-			int m=listaPaises.indexOf(this.fabricante.getPais().getNombre());
+			int m=listaPaises.indexOf(this.fabricante.getPais());
 			listaCantidad2.set(m, listaCantidad2.get(m)+1);
 		} else {
-			listaPaises.add(this.fabricante.getPais().getNombre());
+			listaPaises.add(this.fabricante.getPais());
 			listaCantidad2.add(1);
 		}
 	}
 	
-	public static String fabricaMayorVentas() {
-		int mayor=0;
-		String fabrica="";
-		for (int j=0;j<listaCantidad1.size();j++) {
+	public static Fabricante fabricaMayorVentas() {
+		int mayor=listaCantidad1.get(0);
+		Fabricante fabri=listaFabricas.get(0);
+		for (int j=1;j<listaCantidad1.size();j++) {
 			if (listaCantidad1.get(j)>mayor) {
 				mayor=listaCantidad1.get(j);
-				fabrica=listaFabricas.get(j);
+				fabri=listaFabricas.get(j);
 			}
 		}
-		return fabrica;
+		return fabri;
 	}
 	
-	public static String paisMasVendedor() {
-		int mayor=0;
-		String pais="";
-		for (int k=0;k<listaCantidad2.size();k++) {
+	public static Pais paisMasVendedor() {
+		int mayor=listaCantidad2.get(0);
+		Pais pais=listaPaises.get(0);
+		for (int k=1;k<listaCantidad2.size();k++) {
 			if (listaCantidad2.get(k)>mayor) {
 				mayor=listaCantidad1.get(k);
 				pais=listaPaises.get(k);
@@ -80,6 +80,10 @@ public class Vehiculo {
 
 	public static int getCantidadVehiculos() {
 		return CantidadVehiculos;
+	}
+
+	public static void setCantidadVehiculos(int numero){
+		CantidadVehiculos=numero;
 	}
 
 	public String getPlaca() {
